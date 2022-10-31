@@ -1,5 +1,5 @@
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input } from "antd";
+import { Button, Divider, Form, Input, Select } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { firestore } from "../../firebase";
 import { updateDoc, doc } from "firebase/firestore";
@@ -8,7 +8,7 @@ const FormSection = ({ data, form, setEditContent }) => {
   const onFinish = (values) => {
     // console.log("Received values of form:", values);
 
-    // // console.log(listItem.id);
+    // console.log(listItem.id);
 
     let updatedValue = {
       sectionTitle: data.sectionTitle,
@@ -22,7 +22,11 @@ const FormSection = ({ data, form, setEditContent }) => {
     } catch (error) {
       console.log(error);
     }
+
+    console.log(values);
   };
+
+  const { Option } = Select;
 
   return (
     <>
@@ -104,13 +108,13 @@ const FormSection = ({ data, form, setEditContent }) => {
                               >
                                 Add Answers
                               </Button>
-                              {answers.map((answers, questionIndex) => (
+                              {answers.map((answer, questionIndex) => (
                                 <div className="flex gap-2 items-center mb-1">
                                   <Form.Item
                                     className="list w-full "
-                                    {...answers}
-                                    name={[answers.name, "answer"]}
-                                    fieldKey={[answers.key, "answer"]}
+                                    {...answer}
+                                    name={[answer.name, "answer"]}
+                                    fieldKey={[answer.key, "answer"]}
                                     rules={[
                                       {
                                         required: true,
@@ -121,9 +125,48 @@ const FormSection = ({ data, form, setEditContent }) => {
                                     <Input placeholder="Answer" />
                                   </Form.Item>
 
+                                  <Form.Item
+                                    className="list "
+                                    {...answer}
+                                    name={[answer.name, "type"]}
+                                    fieldKey={[answer.key, "type"]}
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "Missing type",
+                                      },
+                                    ]}
+                                  >
+                                    <Select
+                                      style={{
+                                        width: 120,
+                                      }}
+                                    >
+                                      <Option value="text">text</Option>
+                                      <Option value="<a>">{"<a>"}</Option>
+                                      <Option value="button">button</Option>
+                                      <Option value="link">link</Option>
+                                    </Select>
+                                  </Form.Item>
+
+                                  {/* <Form.Item
+                                    className="list  "
+                                    {...answer}
+                                    name={[answer.name, "url"]}
+                                    fieldKey={[answer.key, "url"]}
+                                    rules={[
+                                      {
+                                        required: true,
+                                        message: "Missing url",
+                                      },
+                                    ]}
+                                  >
+                                    <Input placeholder="Answer" />
+                                  </Form.Item> */}
+
                                   <MinusCircleOutlined
                                     onClick={() => {
-                                      remove(answers.name);
+                                      remove(answer.name);
                                     }}
                                   />
                                 </div>

@@ -17,14 +17,13 @@ import { firestore } from "../../firebase";
 
 const ListFAQ = ({ setEditContent }) => {
   const [editStyle, setEditStyle] = useState("none");
-  const providersCollections = collection(firestore, "providerFAQ");
   const [providerFaq, setProviderFaq] = useState([]);
 
   const providerCollections = collection(firestore, "providerFAQ");
 
   // const handleAddData = () => {
   //   try {
-  //     addDoc(providersCollections, {
+  //     addDoc(providerCollections, {
   //       ...data[3],
   //       createdAt: serverTimestamp(),
   //     });

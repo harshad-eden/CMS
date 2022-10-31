@@ -1,35 +1,35 @@
-const schemaProvider = [
-  {
-    sectionTitle: "Claims",
-    questions: [
-      {
-        question: "How do we submit claims?",
-        answers: [
-          {
-            type: "text",
-            answer: "Fully completed signed claim form",
-          },
-        ],
-      },
-    ],
-  },
-];
+// const schemaProvider = [
+//   {
+//     sectionTitle: "Claims",
+//     questions: [
+//       {
+//         question: "How do we submit claims?",
+//         answers: [
+//           {
+//             type: "text",
+//             answer: "Fully completed signed claim form",
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
-const schemaEmployer = [
-  {
-    questions: [
-      {
-        question: "How do we submit claims?",
-        answers: [
-          {
-            type: "text",
-            answer: "Fully completed signed claim form",
-          },
-        ],
-      },
-    ],
-  },
-];
+// const schemaEmployer = [
+//   {
+//     questions: [
+//       {
+//         question: "How do we submit claims?",
+//         answers: [
+//           {
+//             type: "text",
+//             answer: "Fully completed signed claim form",
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
 export const data = [
   {
@@ -48,8 +48,13 @@ export const data = [
           },
           {
             type: "<a>",
-            answer: ["Submit as per the instructions on"],
+            answer: "Submit as per the instructions on",
             url: "/ServiceProviderUserManual.pdf",
+          },
+          {
+            type: "button",
+            answer: "Click here to submit New Claim",
+            url: "/newClaim",
           },
         ],
       },
@@ -76,6 +81,7 @@ export const data = [
         answers: [
           {
             type: "Link",
+            url: "/claims",
             answer: "click here",
           },
         ],
@@ -120,6 +126,7 @@ export const data = [
         answers: [
           {
             type: "Link",
+            url: "/payments",
             answer: "click here",
           },
         ],
@@ -165,6 +172,7 @@ export const data = [
         answers: [
           {
             type: "Link",
+            url: "/pre-auths",
             answer: "click here",
           },
         ],
@@ -174,6 +182,7 @@ export const data = [
         answers: [
           {
             type: "Link",
+            url: "/pre-auths",
             answer: "click here",
           },
         ],
@@ -182,7 +191,8 @@ export const data = [
         question: "How do I edit pre-auth?",
         answers: [
           {
-            type: "text",
+            type: "Link",
+            url: "/pre-auths",
             answer: "click here",
           },
         ],
