@@ -1,36 +1,49 @@
 import { Button, Divider } from "antd";
 import React, { useEffect, useState } from "react";
-// import { data } from "../../provider";
+import { data } from "../../provider";
 import { EditFilled } from "@ant-design/icons";
 
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { updateDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  doc,
+  serverTimestamp,
+  orderBy,
+} from "firebase/firestore";
+
 import { firestore } from "../../firebase";
 
 const ListFAQ = ({ setEditContent }) => {
   const [editStyle, setEditStyle] = useState("none");
-  const providersCollectionref = collection(firestore, "providerFAQ");
+  const providersCollections = collection(firestore, "providerFAQ");
   const [providerFaq, setProviderFaq] = useState([]);
-
-  const handleAddData = () => {
-    try {
-      // data.map((item) => addDoc(providersCollectionref, item));
-      // addDoc(providersCollectionref, data[3]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const providerCollections = collection(firestore, "providerFAQ");
 
+  // const handleAddData = () => {
+  //   try {
+  //     addDoc(providersCollections, {
+  //       ...data[3],
+  //       createdAt: serverTimestamp(),
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   useEffect(() => {
     const getOrders = async () => {
-      const data = await getDocs(providerCollections);
+      const data = await getDocs(
+        providerCollections,
+        orderBy("createdAt", "desc")
+      );
       let sections = [];
       data.docs.forEach((doc) => {
         sections.push({ ...doc.data(), id: doc.id });
       });
-      setProviderFaq(sections.reverse());
+      setProviderFaq(sections?.sort((a, b) => a.createdAt - b.createdAt));
     };
 
     getOrders();

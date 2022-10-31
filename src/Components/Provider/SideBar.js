@@ -9,6 +9,7 @@ const SideBar = ({ setCreateSection, editContent }) => {
     if (sectionTitle.trim().length > 2) {
       setCreateSection(sectionTitle);
       setIsModalOpen(false);
+      form.resetFields();
     } else {
       setCreateSection();
     }

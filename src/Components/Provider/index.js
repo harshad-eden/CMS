@@ -9,6 +9,7 @@ import ListFAQ from "./ListFaq";
 
 import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../firebase";
+import AddSection from "./AddSection";
 
 const Employer = () => {
   const [form] = Form.useForm();
@@ -42,6 +43,11 @@ const Employer = () => {
               form={form}
               data={editContent}
               setEditContent={setEditContent}
+              createSection={createSection}
+              setCreateSection={setCreateSection}
+            />
+          ) : createSection ? (
+            <AddSection
               createSection={createSection}
               setCreateSection={setCreateSection}
             />
