@@ -29,15 +29,16 @@ const FormSection = ({ data, form, setEditContent }) => {
   const { Option } = Select;
 
   return (
-    <>
+    <div className="pb-24">
       <div
         onClick={() => setEditContent(false)}
-        className="flex gap-2 items-center mb-6 cursor-pointer "
+        className="flex gap-2 items-center cursor-pointer"
       >
         <BsFillArrowLeftCircleFill size={18} />
         <h2 className="mb-0">Provider</h2>
       </div>
-      <div className="flex mx-auto w-10/12 relative">
+      <div className="flex flex-col mx-auto w-10/12 relative">
+        <h2 className="mt-3 ">Edit {data?.sectionTitle}</h2>
         <Form
           form={form}
           name="dynamic_form_nest_item"
@@ -189,7 +190,7 @@ const FormSection = ({ data, form, setEditContent }) => {
           </Form.List>
         </Form>
       </div>
-    </>
+    </div>
   );
 };
 

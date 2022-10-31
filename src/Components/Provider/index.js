@@ -36,7 +36,7 @@ const Employer = () => {
 
   return (
     <Layout>
-      <div className="flex mx-auto justify-between w-10/12 h-screen  ">
+      <div className="flex mx-auto justify-between w-10/12 min-h-screen  ">
         <div className="w-8/12 h-fit p-4 rounded 	 ">
           {editContent ? (
             <FormSection
