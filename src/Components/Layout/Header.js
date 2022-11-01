@@ -12,7 +12,9 @@ const HeaderComponenet = ({ toggleDrawer }) => {
       navigate("/profile");
     }
     if (e.key === "2") {
-      localStorage.clear();
+      window.location.reload();
+      localStorage.clear("cmsUser");
+      localStorage.clear("cms-auth");
       navigate("/login");
     }
   };
@@ -38,12 +40,12 @@ const HeaderComponenet = ({ toggleDrawer }) => {
   return (
     <div className="flex items-center justify-end h-16 px-12 py-4 mb-10 bg-slate-100 ">
       <div className=" flex justify-between gap-3">
+        <p style={{ marginBottom: 0 }}>{localStorage.getItem("cmsUser")}</p>
         <Dropdown overlay={menu}>
           <div style={{ display: "flex", alignItems: "center", gap: 15 }}>
             <UserOutlined />
           </div>
         </Dropdown>
-        <p style={{ marginBottom: 0 }}>{"username"}</p>
       </div>
     </div>
   );

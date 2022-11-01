@@ -3,13 +3,12 @@ import { Button, Divider, Form, Input, Select } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { firestore } from "../../firebase";
 import { updateDoc, doc } from "firebase/firestore";
+import { useRef, useState } from "react";
+
+const { Option } = Select;
 
 const FormSection = ({ data, form, setEditContent }) => {
   const onFinish = (values) => {
-    // console.log("Received values of form:", values);
-
-    // console.log(listItem.id);
-
     let updatedValue = {
       sectionTitle: data.sectionTitle,
       ...values,
@@ -22,11 +21,20 @@ const FormSection = ({ data, form, setEditContent }) => {
     } catch (error) {
       console.log(error);
     }
-
-    console.log(values);
   };
 
-  const { Option } = Select;
+  // const handleAddData = () => {
+  //   try {
+  //     addDoc(providerCollections, {
+  //       ...data[3],
+  //       createdAt: serverTimestamp(),
+  //     });
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // console.log("whee", data.questions[0].answers[3].answer);
 
   return (
     <div className="pb-24">
@@ -38,7 +46,7 @@ const FormSection = ({ data, form, setEditContent }) => {
         <h2 className="mb-0">Provider</h2>
       </div>
       <div className="flex flex-col mx-auto w-10/12 relative">
-        <h2 className="mt-3 ">Edit {data?.sectionTitle}</h2>
+        <h2 className="mt-3 text-lg">Edit {data?.sectionTitle}</h2>
         <Form
           form={form}
           name="dynamic_form_nest_item"
@@ -88,6 +96,7 @@ const FormSection = ({ data, form, setEditContent }) => {
                         >
                           <Input size="large" placeholder="Question" />
                         </Form.Item>
+
                         <MinusCircleOutlined
                           onClick={() => {
                             remove(field.name);
@@ -110,7 +119,10 @@ const FormSection = ({ data, form, setEditContent }) => {
                                 Add Answers
                               </Button>
                               {answers.map((answer, questionIndex) => (
-                                <div className="flex gap-2 items-center mb-1">
+                                <div
+                                  key={questionIndex}
+                                  className="flex gap-2 items-center mb-1"
+                                >
                                   <Form.Item
                                     className="list w-full "
                                     {...answer}
@@ -150,20 +162,14 @@ const FormSection = ({ data, form, setEditContent }) => {
                                     </Select>
                                   </Form.Item>
 
-                                  {/* <Form.Item
+                                  <Form.Item
                                     className="list  "
                                     {...answer}
                                     name={[answer.name, "url"]}
                                     fieldKey={[answer.key, "url"]}
-                                    rules={[
-                                      {
-                                        required: true,
-                                        message: "Missing url",
-                                      },
-                                    ]}
                                   >
-                                    <Input placeholder="Answer" />
-                                  </Form.Item> */}
+                                    <Input placeholder="slug" />
+                                  </Form.Item>
 
                                   <MinusCircleOutlined
                                     onClick={() => {

@@ -19,7 +19,7 @@ const SideBar = ({ setCreateSection, editContent }) => {
     <>
       <div
         className="flex flex-col w-3/12 bg-slate-100 p-6 rounded-xl gap-4 mt-3"
-        style={{ height: 150 }}
+        style={{ height: 85 }}
       >
         <Button
           onClick={() => setIsModalOpen(true)}
@@ -28,13 +28,13 @@ const SideBar = ({ setCreateSection, editContent }) => {
         >
           Add Section
         </Button>
-        <Button
+        {/* <Button
           disabled={editContent ? false : true}
           type="primary"
           shape="round"
         >
           Publish
-        </Button>
+        </Button> */}
       </div>
       <Modal
         title="Basic Modal"

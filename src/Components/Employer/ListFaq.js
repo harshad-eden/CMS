@@ -1,13 +1,12 @@
 import { Button, Divider } from "antd";
 import React, { useState } from "react";
-// import { data } from "../../provider";
 import { EditFilled } from "@ant-design/icons";
 
 import { collection, addDoc } from "firebase/firestore";
 import { updateDoc, doc } from "firebase/firestore";
 import { firestore } from "../../firebase";
 
-import { data } from "../../claim";
+import { data } from "../../claimNew";
 
 const ListFAQ = ({ setEditContent }) => {
   const [editStyle, setEditStyle] = useState("none");
@@ -52,9 +51,9 @@ const ListFAQ = ({ setEditContent }) => {
           <div className="bg-slate-100 mb-5 p-3 rounded  ">
             {listItem?.question}
             {listItem.answers.map((answerItem, newIndex) => (
-              <div key={newIndex} className="ml-4">
+              <li key={newIndex} className="ml-4">
                 {answerItem.answer}
-              </div>
+              </li>
             ))}
           </div>
         </div>

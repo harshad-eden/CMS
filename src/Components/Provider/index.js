@@ -36,32 +36,34 @@ const Employer = () => {
 
   return (
     <Layout>
-      <div className="flex mx-auto justify-between w-10/12 min-h-screen  ">
-        <div className="w-8/12 h-fit p-4 rounded 	 ">
-          {editContent ? (
-            <FormSection
-              form={form}
-              data={editContent}
-              setEditContent={setEditContent}
-              createSection={createSection}
-              setCreateSection={setCreateSection}
-            />
-          ) : createSection ? (
-            <AddSection
-              createSection={createSection}
-              setCreateSection={setCreateSection}
-            />
-          ) : (
-            <ListFAQ setEditContent={setEditContent} />
-          )}
-        </div>
+      <>
+        <div className="flex mx-auto gap-8 w-10/12 min-h-screen  ">
+          <div className="w-8/12 h-fit p-4 rounded 	 ">
+            {editContent ? (
+              <FormSection
+                form={form}
+                data={editContent}
+                setEditContent={setEditContent}
+                createSection={createSection}
+                setCreateSection={setCreateSection}
+              />
+            ) : createSection ? (
+              <AddSection
+                createSection={createSection}
+                setCreateSection={setCreateSection}
+              />
+            ) : (
+              <ListFAQ setEditContent={setEditContent} />
+            )}
+          </div>
 
-        <SideBar
-          editContent={editContent}
-          setEditContent={setEditContent}
-          setCreateSection={setCreateSection}
-        />
-      </div>
+          <SideBar
+            editContent={editContent}
+            setEditContent={setEditContent}
+            setCreateSection={setCreateSection}
+          />
+        </div>
+      </>
     </Layout>
   );
 };

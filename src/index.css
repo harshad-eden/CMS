@@ -38,3 +38,8 @@ code {
   display: flex;
   justify-content: flex-end;
 }
+
+.ant-modal-confirm .ant-modal-confirm-btns {
+  display: flex;
+  justify-content: flex-end;
+}

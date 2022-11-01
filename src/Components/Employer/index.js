@@ -4,7 +4,7 @@ import FormSection from "./FormSection";
 import SideBar from "./SideBar";
 import { Form } from "antd";
 
-import { data } from "../../claim";
+import { data } from "../../claimNew";
 import ListFAQ from "./ListFaq";
 
 const Employer = () => {
@@ -14,19 +14,24 @@ const Employer = () => {
 
   // <Empty />
 
+  console.log(editContent);
+
   return (
     <Layout>
       <div className="flex mx-auto justify-between w-10/12 h-screen  ">
         <div className="w-8/12 h-fit p-4 rounded 	 ">
-          {/* <FormSection form={form} data={data} /> */}
-          <ListFAQ />
+          {editContent ? (
+            <FormSection form={form} data={data} />
+          ) : (
+            <ListFAQ setEditContent={setEditContent} />
+          )}
         </div>
 
-        <SideBar
+        {/* <SideBar
           editContent={editContent}
           setEditContent={setEditContent}
           setCreateCollection={setCreateCollection}
-        />
+        /> */}
       </div>
     </Layout>
   );
