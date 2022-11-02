@@ -13,7 +13,6 @@ import AddSection from "./AddSection";
 
 const Employer = () => {
   const [form] = Form.useForm();
-  const [providerFaq, setProviderFaq] = useState([]);
   const [createSection, setCreateSection] = useState();
   const [editContent, setEditContent] = useState();
 
@@ -31,8 +30,6 @@ const Employer = () => {
 
   //   getOrders();
   // }, []);
-
-  console.log("createSection", createSection);
 
   return (
     <Layout>

@@ -4,12 +4,15 @@ import { getStorage, ref } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDMRPhql1iZ_Wqu5tqT_01dE6MXSJSv4YQ",
-  authDomain: "edencarecms.firebaseapp.com",
-  projectId: "edencarecms",
-  storageBucket: "edencarecms.appspot.com",
-  messagingSenderId: "109454063032",
-  appId: "1:109454063032:web:5ca008e554a2ef9742cb4d",
+  apiKey: "AIzaSyCANmOEE0Lec840y1_3-dJRs4IIDjJ7w34",
+  authDomain: "eden-cms-54719.firebaseapp.com",
+  databaseURL:
+    "https://eden-cms-54719-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "eden-cms-54719",
+  storageBucket: "eden-cms-54719.appspot.com",
+  messagingSenderId: "104103528113",
+  appId: "1:104103528113:web:63a8fc0de950e37850c490",
+  measurementId: "G-8YXRZVRH4Z",
 };
 
 const app = initializeApp(firebaseConfig);

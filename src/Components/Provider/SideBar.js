@@ -26,7 +26,7 @@ const SideBar = ({ setCreateSection, editContent }) => {
           shape="round"
           type="dashed"
         >
-          Add Section
+          Add New Section
         </Button>
         {/* <Button
           disabled={editContent ? false : true}

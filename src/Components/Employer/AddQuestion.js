@@ -1,21 +1,28 @@
 import { MinusCircleOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { Button, Divider, Form, Input, Select } from "antd";
+import { Button, Divider, Form, Input } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { firestore } from "../../firebase";
-import { updateDoc, doc } from "firebase/firestore";
+import {
+  updateDoc,
+  doc,
+  addDoc,
+  collection,
+  serverTimestamp,
+} from "firebase/firestore";
 
 const FormSection = ({ data, form, setEditContent }) => {
+  const employerCollections = collection(firestore, "employerFAQ");
+
   const onFinish = (values) => {
     try {
-      let docRef = doc(firestore, "employerFAQ", data.id);
-      updateDoc(docRef, values);
-      setEditContent(false);
+      addDoc(employerCollections, {
+        ...data[0],
+        createdAt: serverTimestamp(),
+      });
     } catch (error) {
       console.log(error);
     }
   };
-
-  const { Option } = Select;
 
   return (
     <>
@@ -31,7 +38,13 @@ const FormSection = ({ data, form, setEditContent }) => {
           className="w-full relative"
           autoComplete="off"
           initialValues={{
-            ...data,
+            question: "",
+            answers: [
+              {
+                type: "text",
+                answer: "",
+              },
+            ],
           }}
         >
           <div>
@@ -45,7 +58,7 @@ const FormSection = ({ data, form, setEditContent }) => {
                 },
               ]}
             >
-              <Input placeholder="Question" />
+              <Input size="large" placeholder="Question" />
             </Form.Item>
           </div>
           <Form.List name={"answers"}>
@@ -79,39 +92,6 @@ const FormSection = ({ data, form, setEditContent }) => {
                         <Input placeholder="Answer" />
                       </Form.Item>
 
-                      <Form.Item
-                        className="list "
-                        {...answers}
-                        name={[answers.name, "type"]}
-                        fieldKey={[answers.key, "type"]}
-                        rules={[
-                          {
-                            required: true,
-                            message: "Missing type",
-                          },
-                        ]}
-                      >
-                        <Select
-                          style={{
-                            width: 120,
-                          }}
-                        >
-                          <Option value="text">text</Option>
-                          <Option value="<a>">{"<a>"}</Option>
-                          <Option value="button">button</Option>
-                          <Option value="link">link</Option>
-                        </Select>
-                      </Form.Item>
-
-                      <Form.Item
-                        className="list  "
-                        {...answers}
-                        name={[answers.name, "url"]}
-                        fieldKey={[answers.key, "url"]}
-                      >
-                        <Input placeholder="slug" />
-                      </Form.Item>
-
                       <MinusCircleOutlined
                         onClick={() => {
                           remove(answers.name);
@@ -123,7 +103,6 @@ const FormSection = ({ data, form, setEditContent }) => {
               );
             }}
           </Form.List>
-
           <div className="flex gap-3 float-right !mt-6 ">
             <Form.Item>
               <Button onClick={() => setEditContent(false)} shape="round">

@@ -148,11 +148,21 @@ const AddSection = ({ data, setCreateSection, createSection }) => {
                       <Divider />
                     </div>
                   ))}
-                  <Form.Item className="float-right !mt-6 ">
-                    <Button shape="round" type="primary" htmlType="submit">
-                      Submit
-                    </Button>
-                  </Form.Item>
+                  <div className="flex gap-3 float-right !mt-6 ">
+                    <Form.Item>
+                      <Button
+                        onClick={() => setCreateSection(false)}
+                        shape="round"
+                      >
+                        Cancel
+                      </Button>
+                    </Form.Item>
+                    <Form.Item>
+                      <Button shape="round" type="primary" htmlType="submit">
+                        Submit
+                      </Button>
+                    </Form.Item>
+                  </div>
                 </div>
               );
             }}

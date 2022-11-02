@@ -24,7 +24,6 @@ import { firestore } from "../../firebase";
 const ListFAQ = ({ setEditContent }) => {
   const [editStyle, setEditStyle] = useState("none");
   const [providerFaq, setProviderFaq] = useState([]);
-  const [detectChanges, setDetectChanges] = useState("");
 
   const providerCollections = collection(firestore, "providerFAQ");
 
@@ -68,7 +67,19 @@ const ListFAQ = ({ setEditContent }) => {
     };
 
     getOrders();
-  }, [detectChanges]);
+  }, []);
+
+  // const handleAddData = () => {
+  //   let updatedValue = {
+  //     ...data[3],
+  //     createdAt: serverTimestamp(),
+  //   };
+  //   try {
+  //     addDoc(providerCollections, updatedValue);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div>

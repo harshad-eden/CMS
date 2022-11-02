@@ -18,7 +18,7 @@ const SideBar = ({ setCreateCollection, editContent }) => {
     <>
       <div
         className="flex flex-col w-3/12 bg-slate-100 p-4 rounded gap-6 "
-        style={{ height: "83%" }}
+        style={{ height: 200 }}
       >
         <div className="flex gap-2">
           <Button

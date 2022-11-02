@@ -1,7 +1,7 @@
 import Layout from "../Layout";
 import { useState } from "react";
 import FormSection from "./FormSection";
-import SideBar from "./SideBar";
+import AddQuestion from "./AddQuestion";
 import { Form } from "antd";
 
 import { data } from "../../claimNew";
@@ -9,7 +9,7 @@ import ListFAQ from "./ListFaq";
 
 const Employer = () => {
   const [form] = Form.useForm();
-  const [createCollectionValue, setCreateCollection] = useState();
+  const [newQuestion, setNewQuestion] = useState(false);
   const [editContent, setEditContent] = useState(false);
 
   // <Empty />
@@ -19,11 +19,23 @@ const Employer = () => {
   return (
     <Layout>
       <div className="flex mx-auto justify-between w-10/12 h-screen  ">
-        <div className="w-8/12 h-fit p-4 rounded 	 ">
+        <div className="w-8/12 h-fit p-4 rounded mx-auto	 ">
           {editContent ? (
-            <FormSection form={form} data={data} />
+            <FormSection
+              form={form}
+              data={editContent}
+              setEditContent={setEditContent}
+            />
+          ) : newQuestion ? (
+            <AddQuestion
+              newQuestion={newQuestion}
+              setNewQuestion={setNewQuestion}
+            />
           ) : (
-            <ListFAQ setEditContent={setEditContent} />
+            <ListFAQ
+              setNewQuestion={setNewQuestion}
+              setEditContent={setEditContent}
+            />
           )}
         </div>
 
